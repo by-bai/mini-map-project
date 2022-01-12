@@ -46,13 +46,7 @@ class LoginScreen extends StatelessWidget {
               );
             },
             child: Text('Login'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/register');
-            },
-            child: Text('Register'),
-          ),
+          )
         ],
       ),
     );
