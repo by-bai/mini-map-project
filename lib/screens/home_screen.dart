@@ -17,10 +17,18 @@ class HomeScreen extends StatelessWidget {
         children: [
           Text('You\'re in the Home Screen'),
           Center(
-            child: ElevatedButton(
+           child: ElevatedButton(
               child: Text('Logout'),
               onPressed: () async {
                 await authService.signOut();
+              },
+            ),
+          ),
+          Center(
+            child: ElevatedButton(
+              child: Text('View Map'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/map');
               },
             ),
           ),
@@ -29,3 +37,4 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
