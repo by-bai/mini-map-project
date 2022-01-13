@@ -3,34 +3,51 @@ import 'package:provider/provider.dart';
 import '/services/auth_service.dart';
 
 class NavigationDrawer extends StatelessWidget {
-  final padding = EdgeInsets.symmetric(horizontal: 20);
+  final padding = const EdgeInsets.symmetric(horizontal: 20);
+  final color = const Color(0xff0E4DA4);
+
+  const NavigationDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context);
+    final name = 'Bai He';
+    final email = 'bh@gmail.com';
+    final imageUrl = 'https://images.unsplash.com/uploads/14110635637836178f553/dcc2ccd9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80';
     return Drawer(
       child: Material(
-        color: const Color(0xff0E4DA4),
+        color: color,
         child: ListView(
-          padding: padding,
           children: <Widget>[
-            const SizedBox(height: 48),
-            buildMenuItem(
-                text: 'Second Map',
-                icon: Icons.map_outlined,
-                onClicked: () => Navigator.pushNamed(context, '/temp')
-
-            ),
-            buildMenuItem(
-                text: 'Logout',
-                icon: Icons.logout,
-                onClicked: () async {
-                  await authService.signOut();
-                  // pop all screens stacked on top of first screen(Home) in stack
-                  Navigator.popUntil(context, ModalRoute.withName('/'));
-                }
-            ),
-          ]
+            buildHeader(
+              urlImage: imageUrl,
+              name: name,
+              email: email,
+              ),
+            Container(
+            padding: padding,
+            child: Column(
+              children: [
+              buildMenuItem(
+                  text: 'Second Map',
+                  icon: Icons.map_outlined,
+                  onClicked: () {
+                    Navigator.of(context).pop(); // close navigation drawer
+                    Navigator.pushNamed(context, '/temp'); }
+              ),
+              buildMenuItem(
+                  text: 'Logout',
+                  icon: Icons.logout,
+                  onClicked: () async {
+                    await authService.signOut();
+                    // pop all screens stacked on top of first screen(Home) in stack
+                    Navigator.popUntil(context, ModalRoute.withName('/'));
+                  }
+              )
+            ]
+           )
+          )
+         ]
         )
       )
     );
@@ -42,14 +59,44 @@ class NavigationDrawer extends StatelessWidget {
     VoidCallback? onClicked,
 
 }) {
-    final color = const Color(0xff0E4DA4);
 
     return ListTile(
-      leading: Icon(icon, color: color),
-      title: Text(text, style: TextStyle(color: color)),
+      leading: Icon(icon, color: Colors.white),
+      title: Text(text, style: const TextStyle(color: Colors.white)),
       onTap: onClicked,
-      tileColor: Colors.white,
+      tileColor: color
     );
   }
+
+  Widget buildHeader({
+    required String urlImage,
+    required String name,
+    required String email,
+  }) =>
+      InkWell(
+        child: Container(
+          padding: padding.add(const EdgeInsets.symmetric(vertical: 40)),
+          child: Row(
+            children: [
+              CircleAvatar(radius: 30, backgroundImage: NetworkImage(urlImage)),
+              SizedBox(width: 20),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    name,
+                    style: const TextStyle(fontSize: 20, color: Colors.white),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    email,
+                    style: const TextStyle(fontSize: 14, color: Colors.white),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
 
 }
