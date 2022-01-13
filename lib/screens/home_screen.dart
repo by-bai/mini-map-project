@@ -1,47 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '/services/auth_service.dart';
+import '/widgets/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final authService = Provider.of<AuthService>(context);
     return Scaffold(
+      drawer: NavigationDrawer(),
       appBar: AppBar(
         title: Text('Home'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Text('You\'re in the Home Screen'),
-          Center(
-           child: ElevatedButton(
-              child: Text('Logout'),
-              onPressed: () async {
-                await authService.signOut();
-              },
-            ),
-          ),
-          Center(
-            child: ElevatedButton(
-              child: Text('View Map 1'),
-              onPressed: () {
-                Navigator.pushNamed(context, '/map');
-              },
-            ),
-          ),
-          Center(
-            child: ElevatedButton(
-              child: Text('View Map 2'),
-              onPressed: () {
-                Navigator.pushNamed(context, '/map2');
-              },
-            ),
-          ),
-        ],
-      ),
+      body: FirstMap()
     );
   }
 }
