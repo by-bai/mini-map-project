@@ -26,9 +26,17 @@ class HomeScreen extends StatelessWidget {
           ),
           Center(
             child: ElevatedButton(
-              child: Text('View Map'),
+              child: Text('View Map 1'),
               onPressed: () {
                 Navigator.pushNamed(context, '/map');
+              },
+            ),
+          ),
+          Center(
+            child: ElevatedButton(
+              child: Text('View Map 2'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/map2');
               },
             ),
           ),
