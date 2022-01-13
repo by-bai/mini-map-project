@@ -10,37 +10,42 @@ class MapScreen extends StatefulWidget {
 
 class MapScreenState extends State<MapScreen> {
   Completer<GoogleMapController> _controller = Completer();
+  List<Marker> _markerList = [];
+  List<Object> _markerValues = [
+    {'title': 'JTC Summit', 'lat': 1.331340469992664, 'lon': 103.74185756986775},
+    {'title': 'West Gate', 'lat': 1.3347265434540927, 'lon': 103.74259696895801},
+    {'title': 'JCube', 'lat': 1.3335359655075774, 'lon': 103.74020443847188}];
 
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
-
-  static final Marker _kGooglePlexMarker = Marker(
-    markerId: MarkerId('_kGooglePlex'),
-    infoWindow: InfoWindow(title: 'Google Plex'),
-    icon: BitmapDescriptor.defaultMarker,
-    position: LatLng(37.42796133580664, -122.085749655962),
-  );
-
-  static final Marker _kLakeMarker = Marker(
-    markerId: MarkerId('_kLakeMarker'),
-    infoWindow: InfoWindow(title: 'Lake'),
-    icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
-    position: LatLng(37.43296265331129, -122.08832357078792),
+  static final CameraPosition _JurongEast = CameraPosition(
+    target: LatLng(1.3333214468974057, 103.74233947688776), // mrt
+    zoom: 16,
   );
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return Scaffold(
       body: GoogleMap(
         mapType: MapType.normal,
-        markers: {_kGooglePlexMarker, _kLakeMarker},
-        initialCameraPosition: _kGooglePlex,
+        markers: Set.from(buildMarkerList(_markerValues)),
+        initialCameraPosition: _JurongEast,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
         },
       )
     );
   }
+
+  buildMarkerList(markerValues) {
+    for (var i = 0; i < _markerValues.length; i++) {
+      Map marker = markerValues[i];
+      print(marker);
+      _markerList.add(Marker(
+          markerId: MarkerId(marker['title']),
+          position: LatLng(marker['lat'], marker['lon']),
+          infoWindow: InfoWindow(title: marker['title'])
+      ));
+    }
+    return _markerList;
+  }
+
 }
