@@ -1,14 +1,12 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class Map2Screen extends StatefulWidget {
+class SecondMap extends StatefulWidget {
   @override
-  State<Map2Screen> createState() => Map2ScreenState();
+  State<SecondMap> createState() => SecondMapState();
 }
 
-class Map2ScreenState extends State<Map2Screen> {
+class SecondMapState extends State<SecondMap> {
   List<Marker> myMarker = [];
 
   @override

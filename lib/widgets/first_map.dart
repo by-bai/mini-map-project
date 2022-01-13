@@ -1,14 +1,13 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class MapScreen extends StatefulWidget {
+class FirstMap extends StatefulWidget {
   @override
-  State<MapScreen> createState() => MapScreenState();
+  State<FirstMap> createState() => FirstMapState();
 }
 
-class MapScreenState extends State<MapScreen> {
+class FirstMapState extends State<FirstMap> {
   Completer<GoogleMapController> _controller = Completer();
   List<Marker> _markerList = [];
   List<Object> _markerValues = [

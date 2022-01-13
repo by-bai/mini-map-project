@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'Flutter Auth Example',
+        title: 'Mini Map Project',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
@@ -31,8 +31,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => Wrapper(),
           '/login': (context) => LoginScreen(),
-          '/map': (context) => MapScreen(),
-          '/map2': (context) => Map2Screen()
+          '/temp': (context) => TempScreen(),
         },
       ),
     );
