@@ -25,7 +25,7 @@ class FirstMapState extends State<FirstMap> {
     return Scaffold(
       body: GoogleMap(
         mapType: MapType.normal,
-        markers: Set.from(buildMarkerList(_markerValues)),
+        markers: Set.from(buildMarkerList(_markerValues, context)),
         initialCameraPosition: _JurongEast,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
@@ -34,17 +34,46 @@ class FirstMapState extends State<FirstMap> {
     );
   }
 
-  buildMarkerList(markerValues) {
+  buildMarkerList(List markerValues, BuildContext context) {
     for (var i = 0; i < _markerValues.length; i++) {
       Map marker = markerValues[i];
       print(marker);
       _markerList.add(Marker(
           markerId: MarkerId(marker['title']),
           position: LatLng(marker['lat'], marker['lon']),
-          infoWindow: InfoWindow(title: marker['title'])
+          icon: BitmapDescriptor.defaultMarkerWithHue(215.0),
+          onTap: () => showPopUp(context)
       ));
     }
     return _markerList;
+  }
+
+  showPopUp(BuildContext context) {
+
+    // set up the button
+    Widget button = TextButton(
+      child: Text("Close"),
+      onPressed: () {
+        Navigator.of(context).pop(); //dismiss popup
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog popup = AlertDialog(
+      title: Text("My title"),
+      content: Text("This is my message."),
+      actions: [
+        button,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return popup;
+      },
+    );
   }
 
 }
