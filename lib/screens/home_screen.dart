@@ -10,6 +10,7 @@ class HomeScreen extends StatelessWidget {
       drawer: NavigationDrawer(),
       appBar: AppBar(
         title: Text('Home'),
+        backgroundColor: const Color(0xff0E4DA4),
       ),
       body: FirstMap()
     );

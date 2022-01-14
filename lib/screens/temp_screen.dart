@@ -9,6 +9,7 @@ class TempScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text('Second Map'),
+          backgroundColor: const Color(0xff0E4DA4),
         ),
         body: SecondMap()
     );
