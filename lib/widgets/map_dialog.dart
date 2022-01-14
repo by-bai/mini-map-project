@@ -17,29 +17,85 @@ class MapDialog extends StatelessWidget {
   }
 
   _buildChild(BuildContext context) => Container(
-    height: 150,
-    child: Column(
-      children: <Widget>[
-        TextButton(
-          child: Text('close icon'),
-          onPressed: () {
-            Navigator.of(context).pop(); //dismiss popup
-          },
-        ),
-        Text(
-          marker['title']
-        ),
-        Text(
-          marker['lat'].toString()
-        ),
-        Text(
-          marker['lon'].toString()
-        ),
-        Text(
-          marker['desc']
-        )
-      ]
-    )
+      height: 250,
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: Column(
+        children: <Widget>[
+          Row(
+            children: [
+              Spacer(),
+              TextButton.icon(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                icon: Icon(Icons.close_rounded, size: 18),
+                label: Text("CLOSE"),
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.zero, // remove default padding
+                  primary: const Color(0xff0E4DA4)
+                )
+              )
+            ]
+          ),
+          SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const Text(
+                'Place',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(width: 118),
+              Text(
+                marker['title']
+              )
+            ]
+          ),
+          SizedBox(height: 10),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Latitude',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Text(
+                    marker['lat'].toString()
+                )
+              ]
+          ),
+          SizedBox(height: 10),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Longitude',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  marker['lon'].toString()
+                )
+              ]
+          ),
+          SizedBox(height: 10),
+          Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Description',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                SizedBox(width: 80),
+                Flexible(
+                    child: Text(
+                        marker['desc'],
+                    )
+                )
+              ]
+          ),
+
+        ]
+      )
   );
 
 }
