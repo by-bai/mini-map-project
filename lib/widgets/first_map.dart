@@ -1,44 +1,28 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:jtc_mini_project/widgets/map_dialog.dart';
+import 'package:jtc_mini_project/models/location_model.dart';
 
 class FirstMap extends StatefulWidget {
+  const FirstMap({Key? key, required this.locations}) : super(key: key);
+
+  final List<Location> locations;
+
   @override
   State<FirstMap> createState() => FirstMapState();
 }
 
 class FirstMapState extends State<FirstMap> {
   late BitmapDescriptor mapMarker;
+  List<Marker> _markerList = [];
+  List<Location> _markerValues = [];
 
   @override
   void initState() {
     super.initState();
+    _markerValues = widget.locations;
     //setCustomMarker();
   }
-
-  List<Marker> _markerList = [];
-  List<Map> _markerValues =
-  [
-    {
-      'title': 'JTC Summit',
-      'lat': 1.331340469992664,
-      'lon': 103.74185756986775,
-      'desc': 'JTC Summit is a commercial building.'
-    },
-    {
-      'title': 'West Gate',
-      'lat': 1.3347265434540927,
-      'lon': 103.74259696895801,
-      'desc': 'Westgate is a lifestyle and family shopping mall.'
-    },
-    {
-      'title': 'JCube',
-      'lat': 1.3335359655075774,
-      'lon': 103.74020443847188,
-      'desc': 'JCube offers a good variety of shopping, F&B & entertainment options.'
-    }
-  ];
 
   // void setCustomMarker() async {
   //   mapMarker = await BitmapDescriptor.fromAssetImage(const ImageConfiguration(), 'assets/icons/temp-marker.png');
@@ -47,11 +31,11 @@ class FirstMapState extends State<FirstMap> {
   void _onMapCreated(GoogleMapController controller) {
     setState(() {
       for (var i = 0; i < _markerValues.length; i++) {
-        Map marker = _markerValues[i];
+        Location marker = _markerValues[i];
         print(marker);
         _markerList.add(Marker(
-            markerId: MarkerId(marker['title']),
-            position: LatLng(marker['lat'], marker['lon']),
+            markerId: MarkerId(marker.title),
+            position: LatLng(marker.lat, marker.lon),
             icon: BitmapDescriptor.defaultMarkerWithHue(215.0),
             onTap: () => showPopUp(context, marker)
         ));
@@ -75,8 +59,7 @@ class FirstMapState extends State<FirstMap> {
     );
   }
 
-  showPopUp(BuildContext context, Map marker) {
-
+  showPopUp(BuildContext context, Location marker) {
     // show the dialog
     showDialog(
       context: context,
