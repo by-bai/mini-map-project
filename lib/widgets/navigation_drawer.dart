@@ -28,22 +28,36 @@ class NavigationDrawer extends StatelessWidget {
             padding: padding,
             child: Column(
               children: [
-              buildMenuItem(
-                  text: 'Second Map',
-                  icon: Icons.map_outlined,
-                  onClicked: () {
-                    Navigator.of(context).pop(); // close navigation drawer
-                    Navigator.pushNamed(context, '/temp'); }
-              ),
-              buildMenuItem(
-                  text: 'Logout',
-                  icon: Icons.logout,
-                  onClicked: () async {
-                    await authService.signOut();
-                    // pop all screens stacked on top of first screen(Home) in stack
-                    Navigator.popUntil(context, ModalRoute.withName('/'));
-                  }
-              )
+                buildMenuItem(
+                    text: 'Home',
+                    icon: Icons.home,
+                    onClicked: () {
+                      Navigator.of(context).pop(); // close navigation drawer
+                      Navigator.pushNamed(context, '/'); }
+                ),
+                buildMenuItem(
+                    text: 'Saved',
+                    icon: Icons.bookmark,
+                    onClicked: () {
+                      Navigator.of(context).pop(); // close navigation drawer
+                      Navigator.pushNamed(context, '/saved'); }
+                ),
+                buildMenuItem(
+                    text: 'Temp',
+                    icon: Icons.map_outlined,
+                    onClicked: () {
+                      Navigator.of(context).pop(); // close navigation drawer
+                      Navigator.pushNamed(context, '/temp'); }
+                ),
+                buildMenuItem(
+                    text: 'Logout',
+                    icon: Icons.logout,
+                    onClicked: () async {
+                      await authService.signOut();
+                      // pop all screens stacked on top of first screen(Home) in stack
+                      Navigator.popUntil(context, ModalRoute.withName('/'));
+                    }
+                )
             ]
            )
           )
