@@ -6,16 +6,18 @@ class SavedScreen extends StatelessWidget {
   final List<Map> saved =
   [
     {
-      "title": "JTC Summit",
-      "lat": 1.331340469992664,
-      "lon": 103.74185756986775,
-      "desc": "JTC Summit is a commercial building."
+      "title": "NEX",
+      "lat": 1.3510082678024458,
+      "lon": 103.87226922618538,
+      "desc": "Nex is a regional shopping mall in Serangoon.",
+      "address": "23 Serangoon Central, Singapore 556083"
     },
     {
-      "title": "JCube",
-      "lat": 1.3335359655075774,
-      "lon": 103.74020443847188,
-      "desc": "JCube offers a good variety of shopping, F&B & entertainment options."
+      "title": "Pasir Ris Central Hawker Centre",
+      "lat": 1.3737921140483658,
+      "lon": 103.95145003967957,
+      "desc": "Homeground of traditional street food and hipster kitchens.",
+      "address": "110 Pasir Ris Central, Singapore 519641"
     }
   ];
 
@@ -32,15 +34,53 @@ class SavedScreen extends StatelessWidget {
   }
 
   buildCards()  => ListView.builder(
-    physics: BouncingScrollPhysics(),
+    physics: const BouncingScrollPhysics(),
+    padding: const EdgeInsets.all(24),
     itemCount: saved.length,
     itemBuilder: (context, index) {
       final location = saved[index];
 
-      return ListTile(
-        title: Text(location['title']),
-        subtitle: Text(location['desc']),
-      );
+      return Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 22),
+            child: Column(
+              children: [
+                const SizedBox(height: 4),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children:
+                          [
+                            Text(location['title'],
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xff0E4DA4))),
+                            const SizedBox(height: 12),
+                            Text(location['address']),
+                            const SizedBox(height: 12),
+                          ]
+                      ),
+                      const Spacer(),
+                      const Icon(Icons.bookmark, color: Color(0xff0E4DA4))
+                    ]
+                ),
+                TextButton.icon(
+                    onPressed: () => {},
+                    icon: const Icon(Icons.map_outlined, size: 18),
+                    label: const Text("View on Map"),
+                    style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero, // remove default padding
+                        primary: const Color(0xff0E4DA4)
+                    )
+                )
+                 ],
+      )));
     },
   );
 }
