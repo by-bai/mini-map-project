@@ -49,9 +49,9 @@ class FirstMapState extends State<FirstMap> {
       }});
   }
 
-  static final CameraPosition _JurongEast = CameraPosition(
-    target: LatLng(1.3333214468974057, 103.74233947688776), // mrt
-    zoom: 16,
+  static final CameraPosition _Singapore = CameraPosition(
+    target: LatLng(1.3540387685146973, 103.86729323027085), // mrt
+    zoom: 11,
   );
 
   @override
@@ -60,7 +60,7 @@ class FirstMapState extends State<FirstMap> {
       body: GoogleMap(
         mapType: MapType.normal,
         markers: Set.from(_markerList),
-        initialCameraPosition: _JurongEast,
+        initialCameraPosition: _Singapore,
         onMapCreated: _onMapCreated
       )
     );
