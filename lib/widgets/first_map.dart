@@ -9,9 +9,16 @@ class FirstMap extends StatefulWidget {
 }
 
 class FirstMapState extends State<FirstMap> {
-  Completer<GoogleMapController> _controller = Completer();
+  late BitmapDescriptor mapMarker;
+
+  @override
+  void initState() {
+    super.initState();
+    setCustomMarker();
+  }
+
   List<Marker> _markerList = [];
-  List<Object> _markerValues =
+  List<Map> _markerValues =
   [
     {
       'title': 'JTC Summit',
@@ -33,6 +40,24 @@ class FirstMapState extends State<FirstMap> {
     }
   ];
 
+  void setCustomMarker() async {
+    mapMarker = await BitmapDescriptor.fromAssetImage(const ImageConfiguration(), 'assets/icons/temp-marker.png');
+  }
+
+  void _onMapCreated(GoogleMapController controller) {
+    setState(() {
+      for (var i = 0; i < _markerValues.length; i++) {
+        Map marker = _markerValues[i];
+        print(marker);
+        _markerList.add(Marker(
+            markerId: MarkerId(marker['title']),
+            position: LatLng(marker['lat'], marker['lon']),
+            icon: mapMarker,
+            onTap: () => showPopUp(context, marker)
+        ));
+      }});
+  }
+
   static final CameraPosition _JurongEast = CameraPosition(
     target: LatLng(1.3333214468974057, 103.74233947688776), // mrt
     zoom: 16,
@@ -43,27 +68,11 @@ class FirstMapState extends State<FirstMap> {
     return Scaffold(
       body: GoogleMap(
         mapType: MapType.normal,
-        markers: Set.from(buildMarkerList(_markerValues, context)),
+        markers: Set.from(_markerList),
         initialCameraPosition: _JurongEast,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
+        onMapCreated: _onMapCreated
       )
     );
-  }
-
-  buildMarkerList(List markerValues, BuildContext context) {
-    for (var i = 0; i < _markerValues.length; i++) {
-      Map marker = markerValues[i];
-      print(marker);
-      _markerList.add(Marker(
-          markerId: MarkerId(marker['title']),
-          position: LatLng(marker['lat'], marker['lon']),
-          icon: BitmapDescriptor.defaultMarkerWithHue(215.0),
-          onTap: () => showPopUp(context, marker)
-      ));
-    }
-    return _markerList;
   }
 
   showPopUp(BuildContext context, Map marker) {
