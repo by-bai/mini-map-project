@@ -1,0 +1,20 @@
+[
+  {
+    "title": "JTC Summit",
+    "lat": 1.331340469992664,
+    "lon": 103.74185756986775,
+    "desc": "JTC Summit is a commercial building."
+  },
+  {
+    "title": "West Gate",
+    "lat": 1.3347265434540927,
+    "lon": 103.74259696895801,
+    "desc": "Westgate is a lifestyle and family shopping mall."
+  },
+  {
+    "title": "JCube",
+    "lat": 1.3335359655075774,
+    "lon": 103.74020443847188,
+    "desc": "JCube offers a good variety of shopping, F&B & entertainment options."
+  }
+]

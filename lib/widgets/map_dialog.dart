@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:jtc_mini_project/models/location_model.dart';
 
 class MapDialog extends StatelessWidget {
-  final Map marker;
+  final Location marker;
   MapDialog({required this.marker});
 
   @override
@@ -47,7 +48,7 @@ class MapDialog extends StatelessWidget {
               ),
               SizedBox(width: 118),
               Text(
-                marker['title']
+                marker.title
               )
             ]
           ),
@@ -60,7 +61,7 @@ class MapDialog extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Text(
-                    marker['lat'].toString()
+                    marker.lat.toString()
                 )
               ]
           ),
@@ -73,7 +74,7 @@ class MapDialog extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  marker['lon'].toString()
+                  marker.lon.toString()
                 )
               ]
           ),
@@ -88,7 +89,7 @@ class MapDialog extends StatelessWidget {
                 SizedBox(width: 80),
                 Flexible(
                     child: Text(
-                        marker['desc'],
+                        marker.desc,
                     )
                 )
               ]
