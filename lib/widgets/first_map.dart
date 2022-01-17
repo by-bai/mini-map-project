@@ -145,6 +145,18 @@ class FirstMapState extends State<FirstMap> {
                   )
                 ]
             ),
+            SizedBox(height: 20),
+            ElevatedButton.icon(
+              onPressed: () => {},
+              icon: const Icon(Icons.bookmark, size: 14),
+              label: const Text('Save Location'),
+              style: ElevatedButton.styleFrom(
+                  primary: const Color(0xff0E4DA4),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14)
+                  ),
+
+              ), )
 
           ]
         )
