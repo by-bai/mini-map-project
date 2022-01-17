@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
           '/': (context) => Wrapper(),
           '/login': (context) => LoginScreen(),
           '/temp': (context) => TempScreen(),
+          '/saved': (context) => SavedScreen()
         },
       ),
     );

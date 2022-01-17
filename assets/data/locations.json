@@ -3,18 +3,42 @@
     "title": "JTC Summit",
     "lat": 1.331340469992664,
     "lon": 103.74185756986775,
-    "desc": "JTC Summit is a commercial building."
+    "desc": "JTC Summit is a commercial building.",
+    "address": "8 Jurong Town Hall Rd, Singapore 609434"
   },
   {
     "title": "West Gate",
     "lat": 1.3347265434540927,
     "lon": 103.74259696895801,
-    "desc": "Westgate is a lifestyle and family shopping mall."
+    "desc": "Westgate is a lifestyle and family shopping mall.",
+    "address": "3 Gateway Dr, Singapore 608532"
   },
   {
     "title": "JCube",
     "lat": 1.3335359655075774,
     "lon": 103.74020443847188,
-    "desc": "JCube offers a good variety of shopping, F&B & entertainment options."
+    "desc": "JCube offers a good variety of shopping, F&B & entertainment options.",
+    "address": "2 Jurong East Central 1, Singapore 609731"
+  },
+  {
+    "title": "Rivervale Mall",
+    "lat": 1.3923534464227634,
+    "lon": 103.90444325758118,
+    "desc": "Rivervale Mall is a suburban grocery anchored retail mall located within Sengkang.",
+    "address": "11 Rivervale Cres, Singapore 545082"
+  },
+  {
+    "title": "NEX",
+    "lat": 1.3510082678024458,
+    "lon": 103.87226922618538,
+    "desc": "Nex is a regional shopping mall in Serangoon.",
+    "address": "23 Serangoon Central, Singapore 556083"
+  },
+  {
+    "title": "Pasir Ris Central Hawker Centre",
+    "lat": 1.3737921140483658,
+    "lon": 103.95145003967957,
+    "desc": "Homeground of traditional street food and hipster kitchens.",
+    "address": "110 Pasir Ris Central, Singapore 519641"
   }
 ]
