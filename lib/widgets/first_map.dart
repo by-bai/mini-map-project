@@ -14,7 +14,7 @@ class FirstMapState extends State<FirstMap> {
   @override
   void initState() {
     super.initState();
-    setCustomMarker();
+    //setCustomMarker();
   }
 
   List<Marker> _markerList = [];
@@ -40,9 +40,9 @@ class FirstMapState extends State<FirstMap> {
     }
   ];
 
-  void setCustomMarker() async {
-    mapMarker = await BitmapDescriptor.fromAssetImage(const ImageConfiguration(), 'assets/icons/temp-marker.png');
-  }
+  // void setCustomMarker() async {
+  //   mapMarker = await BitmapDescriptor.fromAssetImage(const ImageConfiguration(), 'assets/icons/temp-marker.png');
+  // }
 
   void _onMapCreated(GoogleMapController controller) {
     setState(() {
@@ -52,7 +52,7 @@ class FirstMapState extends State<FirstMap> {
         _markerList.add(Marker(
             markerId: MarkerId(marker['title']),
             position: LatLng(marker['lat'], marker['lon']),
-            icon: mapMarker,
+            icon: BitmapDescriptor.defaultMarkerWithHue(215.0),
             onTap: () => showPopUp(context, marker)
         ));
       }});
