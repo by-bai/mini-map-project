@@ -37,7 +37,14 @@ class FirstMapState extends State<FirstMap> {
             markerId: MarkerId(marker.title),
             position: LatLng(marker.lat, marker.lon),
             icon: BitmapDescriptor.defaultMarkerWithHue(215.0),
-            onTap: () => showPopUp(context, marker)
+            onTap: () => showModalBottomSheet(
+              context: context, 
+              builder: (context) => buildSheet(marker),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+            ),
+            //onTap: () => showPopUp(context, marker)
         ));
       }});
   }
@@ -68,5 +75,93 @@ class FirstMapState extends State<FirstMap> {
       },
     );
   }
+
+  buildSheet(Location marker) => Container(
+      padding: const EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 30),
+      child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+                  IconButton(
+                      onPressed: () { Navigator.of(context).pop();},
+                      icon: Icon(Icons.keyboard_arrow_down,
+                      size: 30,
+                      color: const Color(0xff0E4DA4),
+                  )),
+            SizedBox(height: 20),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Place',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(width: 118),
+                  Text(
+                      marker.title
+                  )
+                ]
+            ),
+            SizedBox(height: 10),
+            Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Latitude',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(width: 100),
+                  Text(
+                      marker.lat.toString()
+                  )
+                ]
+            ),
+            SizedBox(height: 10),
+            Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                  const Text(
+                    'Longitude',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                    SizedBox(width: 90),
+                    Text(
+                      marker.lon.toString()
+                    )
+                  ]
+            ),
+            SizedBox(height: 10),
+            Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Description',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(width: 80),
+                  Flexible(
+                      child: Text(
+                        marker.desc,
+                      )
+                  )
+                ]
+            ),
+            SizedBox(height: 20),
+            ElevatedButton.icon(
+              onPressed: () => {},
+              icon: const Icon(Icons.bookmark, size: 14),
+              label: const Text('Save Location'),
+              style: ElevatedButton.styleFrom(
+                  primary: const Color(0xff0E4DA4),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14)
+                  ),
+
+              ), )
+
+          ]
+        )
+      );
+
+
 
 }
