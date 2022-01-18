@@ -6,14 +6,14 @@ import 'package:jtc_mini_project/widgets/text_field_container.dart';
 class InputField extends StatelessWidget {
   final String hintText;
   final SvgPicture icon;
-  final ValueChanged<String>? onChanged;
+  final TextEditingController controller;
   final String type;
   const InputField({
     Key? key,
     required this.hintText,
     required this.icon,
     required this.type,
-    this.onChanged,
+    required this.controller,
   }) : super(key: key);
 
   @override
@@ -23,7 +23,7 @@ class InputField extends StatelessWidget {
       child: TextField(
         textAlignVertical: type == 'password' ? TextAlignVertical.center : null,
         style: const TextStyle(color: kGreyColor),
-        onChanged: onChanged,
+        controller: controller,
         cursorColor: kPrimaryColor,
         decoration: InputDecoration(
           icon: icon,

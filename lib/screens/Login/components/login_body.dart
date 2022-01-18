@@ -14,8 +14,10 @@ class LoginBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
-
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
     final authService = Provider.of<AuthService>(context);
+
     return SizedBox(
       width: double.infinity,
       height: double.infinity,
@@ -45,26 +47,28 @@ class LoginBody extends StatelessWidget {
                   icon: SvgPicture.asset(
                       "assets/icons/email.svg",
                       height: screenSize.height * 0.04),
-                  type: 'normal'
+                  type: 'normal',
+                  controller: emailController,
               ),
               InputField(
                   hintText: "Enter your password",
                   icon: SvgPicture.asset(
                       "assets/icons/password.svg",
                       height: screenSize.height * 0.04),
-                  type: 'password'
+                  type: 'password',
+                controller: passwordController
               ),
               const SizedBox(height: 30),
-              RoundedButton(text: 'Sign in', press: () => {}),
-
-
+              RoundedButton(text: 'Sign in', press: () => {
+                authService.signInWithEmailAndPassword(
+                  emailController.text,
+                  passwordController.text
+                )
+              }),
             ]
-
           )
-
         ],
       )
-
     );
   }
 }
