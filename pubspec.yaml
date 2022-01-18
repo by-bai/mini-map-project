@@ -39,6 +39,7 @@ dependencies:
   firebase_auth: ^3.3.5
   google_maps_flutter: ^2.1.1
   flutter_svg: ^1.0.1
+  email_validator: ^2.0.1
 
 dev_dependencies:
   flutter_test:
