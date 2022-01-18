@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:jtc_mini_project/constants.dart';
 import 'package:provider/provider.dart';
 import '/services/auth_service.dart';
 
 class NavigationDrawer extends StatelessWidget {
   final padding = const EdgeInsets.symmetric(horizontal: 20);
-  final color = const Color(0xff0E4DA4);
+  final color = kPrimaryColor;
 
   const NavigationDrawer({Key? key}) : super(key: key);
 

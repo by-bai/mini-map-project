@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jtc_mini_project/constants.dart';
 import '/widgets/widgets.dart';
 
 class TempScreen extends StatelessWidget {
@@ -9,7 +10,7 @@ class TempScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text('Second Map'),
-          backgroundColor: const Color(0xff0E4DA4),
+          backgroundColor: kPrimaryColor,
         ),
         body: SecondMap()
     );
