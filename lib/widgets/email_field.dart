@@ -22,7 +22,6 @@ class EmailField extends StatelessWidget {
         style: const TextStyle(color: kGreyColor),
         controller: controller,
         cursorColor: kPrimaryColor,
-        obscureText: true,
         decoration: InputDecoration(
           icon: icon,
           hintText: hintText,
