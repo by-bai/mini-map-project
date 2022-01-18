@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jtc_mini_project/constants.dart';
 import 'package:jtc_mini_project/services/location_api.dart';
 import '/widgets/widgets.dart';
 import 'package:jtc_mini_project/models/location_model.dart';
@@ -12,7 +13,7 @@ class HomeScreen extends StatelessWidget {
       drawer: NavigationDrawer(),
       appBar: AppBar(
         title: Text('Home'),
-        backgroundColor: const Color(0xff0E4DA4),
+        backgroundColor: kPrimaryColor,
       ),
       body: FutureBuilder<List<Location>>(
         future: LocationApi.getLocationsLocally(context),

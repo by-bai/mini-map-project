@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jtc_mini_project/constants.dart';
 
 class SavedScreen extends StatelessWidget {
   SavedScreen({Key? key}) : super(key: key);
@@ -27,7 +28,7 @@ class SavedScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text('Saved Locations'),
-          backgroundColor: const Color(0xff0E4DA4),
+          backgroundColor: kPrimaryColor,
         ),
         body: buildCards()
     );
@@ -60,14 +61,14 @@ class SavedScreen extends StatelessWidget {
                             Text(location['title'],
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    color: Color(0xff0E4DA4))),
+                                    color: kPrimaryColor)),
                             const SizedBox(height: 12),
                             Text(location['address']),
                             const SizedBox(height: 12),
                           ]
                       ),
                       const Spacer(),
-                      const Icon(Icons.bookmark, color: Color(0xff0E4DA4))
+                      const Icon(Icons.bookmark, color: kPrimaryColor)
                     ]
                 ),
                 TextButton.icon(
@@ -76,7 +77,7 @@ class SavedScreen extends StatelessWidget {
                     label: const Text("View on Map"),
                     style: TextButton.styleFrom(
                         padding: EdgeInsets.zero, // remove default padding
-                        primary: const Color(0xff0E4DA4)
+                        primary: kPrimaryColor
                     )
                 )
                  ],

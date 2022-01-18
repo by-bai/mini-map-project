@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:jtc_mini_project/constants.dart';
 import 'package:jtc_mini_project/widgets/map_dialog.dart';
 import 'package:jtc_mini_project/models/location_model.dart';
 
@@ -85,7 +86,7 @@ class FirstMapState extends State<FirstMap> {
                       onPressed: () { Navigator.of(context).pop();},
                       icon: Icon(Icons.keyboard_arrow_down,
                       size: 30,
-                      color: const Color(0xff0E4DA4),
+                      color: kPrimaryColor,
                   )),
             SizedBox(height: 20),
             Row(
@@ -151,7 +152,7 @@ class FirstMapState extends State<FirstMap> {
               icon: const Icon(Icons.bookmark, size: 14),
               label: const Text('Save Location'),
               style: ElevatedButton.styleFrom(
-                  primary: const Color(0xff0E4DA4),
+                  primary: kPrimaryColor,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(14)
                   ),

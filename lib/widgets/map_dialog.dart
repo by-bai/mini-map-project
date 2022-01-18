@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jtc_mini_project/constants.dart';
 import 'package:jtc_mini_project/models/location_model.dart';
 
 class MapDialog extends StatelessWidget {
@@ -33,7 +34,7 @@ class MapDialog extends StatelessWidget {
                 label: Text("CLOSE"),
                 style: TextButton.styleFrom(
                   padding: EdgeInsets.zero, // remove default padding
-                  primary: const Color(0xff0E4DA4)
+                  primary: kPrimaryColor
                 )
               )
             ]
