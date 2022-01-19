@@ -1,4 +1,5 @@
 class Location {
+  final int id;
   final String title;
   final double lat;
   final double lon;
@@ -6,6 +7,7 @@ class Location {
   final String address;
 
   const Location({
+    required this.id,
     required this.title,
     required this.lat,
     required this.lon,
@@ -14,6 +16,7 @@ class Location {
   });
 
   static Location fromJson(json) => Location(
+    id: json['id'],
     title: json['title'],
     lat: json['lat'],
     lon: json['lon'],
