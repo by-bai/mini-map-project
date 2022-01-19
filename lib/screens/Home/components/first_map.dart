@@ -17,17 +17,32 @@ class FirstMapState extends State<FirstMap> {
   late BitmapDescriptor mapMarker;
   List<Marker> _markerList = [];
   List<Location> _markerValues = [];
+  LatLng _currentPosition = LatLng(1.3540387685146973, 103.86729323027085);
+  double _currentZoom = 11;
 
   @override
   void initState() {
     super.initState();
     _markerValues = widget.locations;
     //setCustomMarker();
+
+  }
+
+  @override
+  void didChangeDependencies() {
+    final Location? dataFromSaved = ModalRoute.of(context)?.settings.arguments as Location?;
+    setState(() {
+      if (dataFromSaved != null) {
+        _currentPosition = LatLng(dataFromSaved!.lat, dataFromSaved!.lon);
+        _currentZoom = 16;
+      }
+    });
   }
 
   // void setCustomMarker() async {
   //   mapMarker = await BitmapDescriptor.fromAssetImage(const ImageConfiguration(), 'assets/icons/temp-marker.png');
   // }
+
 
   void _onMapCreated(GoogleMapController controller) {
     setState(() {
@@ -50,10 +65,7 @@ class FirstMapState extends State<FirstMap> {
       }});
   }
 
-  static final CameraPosition _Singapore = CameraPosition(
-    target: LatLng(1.3540387685146973, 103.86729323027085), // mrt
-    zoom: 11,
-  );
+
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +73,10 @@ class FirstMapState extends State<FirstMap> {
       body: GoogleMap(
         mapType: MapType.normal,
         markers: Set.from(_markerList),
-        initialCameraPosition: _Singapore,
+        initialCameraPosition: CameraPosition(
+          target: _currentPosition, // mrt
+          zoom: _currentZoom,
+        ),
         onMapCreated: _onMapCreated
       )
     );

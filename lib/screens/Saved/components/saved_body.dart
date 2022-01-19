@@ -55,7 +55,10 @@ class _SavedBodyState extends State<SavedBody> {
                           children:
                           [
                             TextButton.icon(
-                                onPressed: () => {},
+                                onPressed: () => {
+                                  Navigator.pushNamed(context, '/',
+                                    arguments: location)
+                                },
                                 icon: const Icon(Icons.map_outlined, size: 18),
                                 label: const Text("View on Map"),
                                 style: TextButton.styleFrom(
