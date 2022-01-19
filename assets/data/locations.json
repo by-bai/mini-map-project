@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "title": "JTC Summit",
     "lat": 1.331340469992664,
     "lon": 103.74185756986775,
@@ -7,6 +8,7 @@
     "address": "8 Jurong Town Hall Rd, Singapore 609434"
   },
   {
+    "id": 2,
     "title": "West Gate",
     "lat": 1.3347265434540927,
     "lon": 103.74259696895801,
@@ -14,6 +16,7 @@
     "address": "3 Gateway Dr, Singapore 608532"
   },
   {
+    "id": 3,
     "title": "JCube",
     "lat": 1.3335359655075774,
     "lon": 103.74020443847188,
@@ -21,6 +24,7 @@
     "address": "2 Jurong East Central 1, Singapore 609731"
   },
   {
+    "id": 4,
     "title": "Rivervale Mall",
     "lat": 1.3923534464227634,
     "lon": 103.90444325758118,
@@ -28,6 +32,7 @@
     "address": "11 Rivervale Cres, Singapore 545082"
   },
   {
+    "id": 5,
     "title": "NEX",
     "lat": 1.3510082678024458,
     "lon": 103.87226922618538,
@@ -35,6 +40,7 @@
     "address": "23 Serangoon Central, Singapore 556083"
   },
   {
+    "id": 6,
     "title": "Pasir Ris Central Hawker Centre",
     "lat": 1.3737921140483658,
     "lon": 103.95145003967957,

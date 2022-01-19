@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:jtc_mini_project/providers/saved_locations_provider.dart';
 import 'package:provider/provider.dart';
 import 'screens/screens.dart';
 import 'services/auth_service.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         Provider<AuthService>(
           create: (_) => AuthService(),
         ),
+        ChangeNotifierProvider(create: (_) => SavedLocations())
       ],
       child: MaterialApp(
         title: 'Mini Map Project',
