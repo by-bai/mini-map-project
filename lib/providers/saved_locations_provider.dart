@@ -7,12 +7,14 @@ class SavedLocations with ChangeNotifier {
   List<Location> get savedLocations => _savedLocations;
 
   void addLocation(Location location) {
-    _savedLocations.add(location);
-    notifyListeners();
+    if (!_savedLocations.contains(location)) {
+      _savedLocations.add(location);
+      notifyListeners();
+    }
   }
 
   void removeLocation(Location location) {
-    _savedLocations.removeWhere((item) => item.title == location.title);
+    _savedLocations.removeWhere((item) => item.id == location.id);
     notifyListeners();
   }
 
