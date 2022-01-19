@@ -18,6 +18,13 @@ class SavedLocations with ChangeNotifier {
     }
   }
 
+  void addLocationAtIndex(Location location, int index) {
+    if (!checkLocationExists(location)) {
+      _savedLocations.insert(index, location);
+      notifyListeners();
+    }
+  }
+
   void removeLocation(Location location) {
     _savedLocations.removeWhere((item) => item.id == location.id);
     notifyListeners();
