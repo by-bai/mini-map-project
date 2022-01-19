@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:jtc_mini_project/constants.dart';
+import 'package:jtc_mini_project/providers/saved_locations_provider.dart';
 import 'package:jtc_mini_project/widgets/map_dialog.dart';
 import 'package:jtc_mini_project/models/location_model.dart';
+import 'package:provider/src/provider.dart';
 
 class FirstMap extends StatefulWidget {
   const FirstMap({Key? key, required this.locations}) : super(key: key);
@@ -148,7 +150,7 @@ class FirstMapState extends State<FirstMap> {
             ),
             SizedBox(height: 20),
             ElevatedButton.icon(
-              onPressed: () => {},
+              onPressed: () => context.read<SavedLocations>().addLocation(marker),
               icon: const Icon(Icons.bookmark, size: 14),
               label: const Text('Save Location'),
               style: ElevatedButton.styleFrom(
