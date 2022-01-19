@@ -55,26 +55,44 @@ class _SavedBodyState extends State<SavedBody> {
                                 const SizedBox(height: 12),
                               ]
                           ),
-                          const Spacer(),
-                          IconButton(
-                              onPressed: () =>
-                              {
-                                context.read<SavedLocations>().removeLocation(location)
-                              },
-                              icon: Icon(Icons.bookmark),
-                              color: kPrimaryColor
-                          )
+
                         ]
                     ),
-                    TextButton.icon(
-                        onPressed: () => {},
-                        icon: const Icon(Icons.map_outlined, size: 18),
-                        label: const Text("View on Map"),
-                        style: TextButton.styleFrom(
-                            padding: EdgeInsets.zero, // remove default padding
-                            primary: kPrimaryColor
-                        )
+                    Row(
+                      children:
+                        [
+                          TextButton.icon(
+                              onPressed: () => {},
+                              icon: const Icon(Icons.map_outlined, size: 18),
+                              label: const Text("View on Map"),
+                              style: TextButton.styleFrom(
+                                  padding: EdgeInsets.zero, // remove default padding
+                                  primary: kPrimaryColor
+                              )
+                          ),
+                          TextButton.icon(
+                              onPressed: () {
+                                context.read<SavedLocations>().removeLocation(location);
+                                String text = '${location.title} removed from your saved locations.';
+                                final snackBar = SnackBar(
+                                    content: Text(text),
+                                    action: SnackBarAction(
+                                      label: 'Undo',
+                                      onPressed: () => context.read<SavedLocations>().addLocation(location),
+                                    )
+                                );
+                                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                              },
+                              icon: const Icon(Icons.delete, size: 18),
+                              label: const Text("Remove Location"),
+                              style: TextButton.styleFrom(
+                                  padding: EdgeInsets.zero, // remove default padding
+                                  primary: kPrimaryColor
+                              )
+                          )
+                        ]
                     )
+
                   ],
                 )));
       },

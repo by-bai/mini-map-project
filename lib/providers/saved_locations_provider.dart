@@ -6,8 +6,13 @@ class SavedLocations with ChangeNotifier {
 
   List<Location> get savedLocations => _savedLocations;
 
+  // check whether savedLocations list contains the location
+  bool checkLocationExists(Location location) {
+    return _savedLocations.contains(location) ? true : false;
+  }
+
   void addLocation(Location location) {
-    if (!_savedLocations.contains(location)) {
+    if (!checkLocationExists(location)) {
       _savedLocations.add(location);
       notifyListeners();
     }
