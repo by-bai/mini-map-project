@@ -104,7 +104,7 @@ class _SavedBodyState extends State<SavedBody> {
     Navigator.popUntil(context, ModalRoute.withName('/'));
     //issue here - the line below would add another google map onto the widget tree.
     //however, without the line below, simply navigating back to the home screen does not refresh the google map.
-    Navigator.pushNamed(context, '/');
+    //Navigator.pushNamed(context, '/');
 
   }
 }
