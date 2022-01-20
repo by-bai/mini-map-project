@@ -8,11 +8,12 @@ class SavedLocations with ChangeNotifier {
 
   // check whether savedLocations list contains the location
   bool checkLocationExists(Location location) {
-    return _savedLocations.contains(location) ? true : false;
+    return _savedLocations.any((e) => e.id == location.id) ? true : false;
   }
 
   void addLocation(Location location) {
-    if (!checkLocationExists(location)) {
+    if (checkLocationExists(location)) {
+    } else {
       _savedLocations.add(location);
       notifyListeners();
     }

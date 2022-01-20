@@ -4,11 +4,10 @@ import 'package:jtc_mini_project/providers/map_provider.dart';
 import 'package:jtc_mini_project/widgets/bottom_sheet.dart';
 import 'package:jtc_mini_project/widgets/map_dialog.dart';
 import 'package:jtc_mini_project/models/location_model.dart';
-import 'package:provider/src/provider.dart';
+import 'package:provider/provider.dart';
 
 class FirstMap extends StatefulWidget {
   const FirstMap({Key? key, required this.locations}) : super(key: key);
-
   final List<Location> locations;
 
   @override
@@ -19,15 +18,12 @@ class FirstMapState extends State<FirstMap> {
   late BitmapDescriptor mapMarker;
   List<Marker> _markerList = [];
   List<Location> _markerValues = [];
-  LatLng _currentPosition = LatLng(0.0,0.0);
-  double _currentZoom = 0;
 
   @override
   void initState() {
     super.initState();
     _markerValues = widget.locations;
     //setCustomMarker();
-
   }
 
   // void setCustomMarker() async {
@@ -58,27 +54,22 @@ class FirstMapState extends State<FirstMap> {
   }
 
 
-
   @override
   Widget build(BuildContext context) {
-    _currentPosition = context
-        .watch<MapProvider>()
-        .cameraPosition;
-    _currentZoom = context
-        .watch<MapProvider>()
-        .cameraZoom;
 
-    return Scaffold(
-      body: GoogleMap(
-        mapType: MapType.normal,
-        markers: Set.from(_markerList),
-        initialCameraPosition: CameraPosition(
-          target: _currentPosition, // mrt
-          zoom: _currentZoom,
-        ),
-        onMapCreated: _onMapCreated
-      )
-    );
+    return Consumer<MapProvider>(
+      builder: (context, cameraConfig, child) =>
+          Scaffold(
+              body: GoogleMap(
+                mapType: MapType.normal,
+                markers: Set.from(_markerList),
+                initialCameraPosition: CameraPosition(
+                  target: cameraConfig.cameraPosition, // mrt
+                  zoom: cameraConfig.cameraZoom,
+                ),
+                onMapCreated: _onMapCreated
+              )
+    ));
   }
 
   showPopUp(BuildContext context, Location marker) {

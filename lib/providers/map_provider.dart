@@ -10,10 +10,12 @@ class MapProvider with ChangeNotifier {
 
   void updatePosition (double lat, double lon) {
     _cameraPosition = LatLng(lat, lon);
+    notifyListeners();
   }
 
   void updateZoom (double zoomLevel) {
     _currentZoom = zoomLevel;
+    notifyListeners();
   }
 
 }
