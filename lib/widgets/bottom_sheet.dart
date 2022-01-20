@@ -32,6 +32,7 @@ class _MapBottomSheetState extends State<MapBottomSheet> {
         :
           setState(() {
             _isButtonDisabled = false;});
+
     _savedLocations = context
         .watch<SavedLocations>()
         .savedLocations;

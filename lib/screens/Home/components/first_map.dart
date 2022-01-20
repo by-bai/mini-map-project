@@ -18,20 +18,12 @@ class FirstMapState extends State<FirstMap> {
   late BitmapDescriptor mapMarker;
   List<Marker> _markerList = [];
   List<Location> _markerValues = [];
-  LatLng _currentPosition = LatLng(0.0,0.0);
-  double _currentZoom = 0;
 
   @override
   void initState() {
     super.initState();
     _markerValues = widget.locations;
   }
-    //setCustomMarker();
-
-  // void setCustomMarker() async {
-  //   mapMarker = await BitmapDescriptor.fromAssetImage(const ImageConfiguration(), 'assets/icons/temp-marker.png');
-  // }
-
 
   void _onMapCreated(GoogleMapController controller) {
     print("Map has been initialized");
