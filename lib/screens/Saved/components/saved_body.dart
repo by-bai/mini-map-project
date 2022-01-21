@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jtc_mini_project/models/location_model.dart';
+import 'package:jtc_mini_project/providers/map_provider.dart';
 import 'package:jtc_mini_project/providers/saved_locations_provider.dart';
 import 'package:provider/provider.dart';
 import '../../../constants.dart';
@@ -55,10 +56,7 @@ class _SavedBodyState extends State<SavedBody> {
                           children:
                           [
                             TextButton.icon(
-                                onPressed: () => {
-                                  Navigator.pushNamed(context, '/',
-                                    arguments: location)
-                                },
+                                onPressed: () => goToMap(location),
                                 icon: const Icon(Icons.map_outlined, size: 18),
                                 label: const Text("View on Map"),
                                 style: TextButton.styleFrom(
@@ -98,5 +96,15 @@ class _SavedBodyState extends State<SavedBody> {
           )
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  void goToMap(Location location) {
+    context.read<MapProvider>().updatePosition(location.lat, location.lon);
+    context.read<MapProvider>().updateZoom(16.0);
+    Navigator.popUntil(context, ModalRoute.withName('/'));
+    //issue here - the line below would add another google map onto the widget tree.
+    //however, without the line below, simply navigating back to the home screen does not refresh the google map.
+    Navigator.pushNamed(context, '/');
+
   }
 }

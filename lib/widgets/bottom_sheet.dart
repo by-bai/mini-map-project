@@ -19,18 +19,20 @@ class MapBottomSheet extends StatefulWidget {
 class _MapBottomSheetState extends State<MapBottomSheet> {
 
   bool _isButtonDisabled = false;
+  List<Location> _savedLocations = [];
 
-  @override
-  void initState() {
-    super.initState();
-    bool _isLocationSaved = context.read<SavedLocations>().checkLocationExists(widget.marker);
-    if (_isLocationSaved) {
-      setState(() { _isButtonDisabled = true; });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
+
+    context.read<SavedLocations>().checkLocationExists(widget.marker)
+        ?
+          setState(() {
+            _isButtonDisabled = true; })
+        :
+          setState(() {
+            _isButtonDisabled = false;});
+
     return Container(
         padding: const EdgeInsets.only(
             left: 16, right: 16, top: 10, bottom: 30),
