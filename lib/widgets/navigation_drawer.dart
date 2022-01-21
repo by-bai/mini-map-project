@@ -10,7 +10,7 @@ import '/services/auth_service.dart';
 class NavigationDrawer extends StatefulWidget {
   NavigationDrawer({Key? key, required this.controller, required this.animateCamera}) : super(key: key);
   Completer<GoogleMapController> controller;
-  VoidCallback animateCamera;
+  Function(LatLng, double) animateCamera;
 
   @override
   State<NavigationDrawer> createState() => NavigationDrawerState();
@@ -53,7 +53,11 @@ class NavigationDrawerState extends State<NavigationDrawer> {
                     icon: Icons.home,
                     onClicked: () {
                       Navigator.of(context).pop(); // close navigation drawer
-                      Navigator.pushNamed(context, '/'); }
+                      String? currentRoute = ModalRoute.of(context)?.settings.name;
+                      if (currentRoute != '/') {
+                        Navigator.pushNamed(context, '/');
+                      }
+                    }
                 ),
                 buildMenuItem(
                     text: 'Saved',
@@ -62,7 +66,7 @@ class NavigationDrawerState extends State<NavigationDrawer> {
                       Navigator.of(context).pop(); // close navigation drawer
                       await Navigator.pushNamed(context, '/saved');
                       if (mapService.runAnimateCamera) {
-                        widget.animateCamera();
+                        widget.animateCamera(mapService.cameraPosition, mapService.cameraZoom);
                         mapService.updateRunAnimateCamera();
                       }
                     },
