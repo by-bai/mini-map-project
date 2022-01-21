@@ -15,11 +15,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Completer<GoogleMapController> _controller = Completer();
-    final mapService = Provider.of<MapProvider>(context, listen: false);
 
-    Future<void> _goToLocation() async {
+    Future<void> _goToLocation(LatLng cameraPosition, double cameraZoom) async {
       final GoogleMapController controller = await _controller.future;
-      controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: mapService.cameraPosition, zoom: mapService.cameraZoom)));
+      controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: cameraPosition, zoom: cameraZoom)));
     }
 
     return Scaffold(
