@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:jtc_mini_project/providers/map_provider.dart';
@@ -7,8 +10,10 @@ import 'package:jtc_mini_project/models/location_model.dart';
 import 'package:provider/provider.dart';
 
 class FirstMap extends StatefulWidget {
-  const FirstMap({Key? key, required this.locations}) : super(key: key);
+  FirstMap({Key? key, required this.locations, required this.controller, required this.animateCamera}) : super(key: key);
   final List<Location> locations;
+  Completer<GoogleMapController> controller;
+  VoidCallback animateCamera;
 
   @override
   State<FirstMap> createState() => FirstMapState();
@@ -18,59 +23,73 @@ class FirstMapState extends State<FirstMap> {
   late BitmapDescriptor mapMarker;
   List<Marker> _markerList = [];
   List<Location> _markerValues = [];
+  LatLng _cameraPosition = LatLng(1.3540387685146973, 103.86729323027085);
+  double _currentZoom = 11.0;
+
 
   @override
   void initState() {
     super.initState();
     _markerValues = widget.locations;
-    //setCustomMarker();
+    for (var i = 0; i < _markerValues.length; i++) {
+      Location marker = _markerValues[i];
+      print(marker);
+      _markerList.add(Marker(
+        markerId: MarkerId(marker.title),
+        position: LatLng(marker.lat, marker.lon),
+        icon: BitmapDescriptor.defaultMarkerWithHue(215.0),
+        onTap: () => showModalBottomSheet(
+          context: context,
+          builder: (context) => MapBottomSheet(marker: marker),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+        ),
+        //onTap: () => showPopUp(context, marker)
+      ));
+    }
   }
-
-  // void setCustomMarker() async {
-  //   mapMarker = await BitmapDescriptor.fromAssetImage(const ImageConfiguration(), 'assets/icons/temp-marker.png');
-  // }
-
-
-  void _onMapCreated(GoogleMapController controller) {
-    print("Map has been initialized");
-    setState(() {
-      for (var i = 0; i < _markerValues.length; i++) {
-        Location marker = _markerValues[i];
-        print(marker);
-        _markerList.add(Marker(
-            markerId: MarkerId(marker.title),
-            position: LatLng(marker.lat, marker.lon),
-            icon: BitmapDescriptor.defaultMarkerWithHue(215.0),
-            onTap: () => showModalBottomSheet(
-              context: context, 
-              builder: (context) => MapBottomSheet(marker: marker),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-            ),
-            //onTap: () => showPopUp(context, marker)
-        ));
-      }});
-  }
-
-
+  
   @override
   Widget build(BuildContext context) {
+    final mapService = Provider.of<MapProvider>(context, listen: false);
 
-    return Consumer<MapProvider>(
-      builder: (context, cameraConfig, child) =>
+    print("map built");
+    return
           Scaffold(
               body: GoogleMap(
                 mapType: MapType.normal,
                 markers: Set.from(_markerList),
                 initialCameraPosition: CameraPosition(
-                  target: cameraConfig.cameraPosition, // mrt
-                  zoom: cameraConfig.cameraZoom,
+                  target: _cameraPosition, // mrt
+                  zoom: _currentZoom,
                 ),
-                onMapCreated: _onMapCreated
-              )
-    ));
+                onMapCreated: (GoogleMapController controller) {
+                  widget.controller.complete(controller);
+                },
+              ),
+            floatingActionButton: FloatingActionButton.extended(
+              onPressed: () async {
+                await Navigator.pushNamed(context, '/saved');
+                setState(() {
+                  _cameraPosition = mapService.cameraPosition;
+                  _currentZoom = mapService.cameraZoom;
+                });
+                widget.animateCamera();
+                print(mapService.cameraPosition);
+                print(mapService.cameraZoom);
+
+              },
+              label: Text('Favourites!'),
+              icon: Icon(Icons.directions_boat),
+            ),
+    );
   }
+
+  // Future<void> _goToLocation() async {
+  //   final GoogleMapController controller = await controller.future;
+  //   controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: _cameraPosition, zoom: _currentZoom)));
+  // }
 
   showPopUp(BuildContext context, Location marker) {
     // show the dialog
