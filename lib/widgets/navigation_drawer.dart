@@ -1,14 +1,30 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:jtc_mini_project/constants.dart';
 import 'package:jtc_mini_project/providers/map_provider.dart';
 import 'package:provider/provider.dart';
 import '/services/auth_service.dart';
 
-class NavigationDrawer extends StatelessWidget {
+class NavigationDrawer extends StatefulWidget {
+  NavigationDrawer({Key? key, required this.controller, required this.animateCamera}) : super(key: key);
+  Completer<GoogleMapController> controller;
+  VoidCallback animateCamera;
+
+  @override
+  State<NavigationDrawer> createState() => NavigationDrawerState();
+}
+
+class NavigationDrawerState extends State<NavigationDrawer> {
   final padding = const EdgeInsets.symmetric(horizontal: 20);
   final color = kPrimaryColor;
 
-  const NavigationDrawer({Key? key}) : super(key: key);
+  @override
+  void initState() {
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -42,11 +58,9 @@ class NavigationDrawer extends StatelessWidget {
                     text: 'Saved',
                     icon: Icons.bookmark,
                     onClicked: () async {
+                      Navigator.of(context).pop(); // close navigation drawer
                       await Navigator.pushNamed(context, '/saved');
-                      mapService.goToLocation();
-                      print(mapService.cameraPosition);
-                      print(mapService.cameraZoom);
-
+                      widget.animateCamera();
                     },
                 ),
                 buildMenuItem(

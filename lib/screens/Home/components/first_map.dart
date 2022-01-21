@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -9,8 +10,10 @@ import 'package:jtc_mini_project/models/location_model.dart';
 import 'package:provider/provider.dart';
 
 class FirstMap extends StatefulWidget {
-  const FirstMap({Key? key, required this.locations}) : super(key: key);
+  FirstMap({Key? key, required this.locations, required this.controller, required this.animateCamera}) : super(key: key);
   final List<Location> locations;
+  Completer<GoogleMapController> controller;
+  VoidCallback animateCamera;
 
   @override
   State<FirstMap> createState() => FirstMapState();
@@ -22,8 +25,7 @@ class FirstMapState extends State<FirstMap> {
   List<Location> _markerValues = [];
   LatLng _cameraPosition = LatLng(1.3540387685146973, 103.86729323027085);
   double _currentZoom = 11.0;
-  late GoogleMapController mapController;
-  Completer<GoogleMapController> _controller = Completer();
+
 
   @override
   void initState() {
@@ -63,7 +65,7 @@ class FirstMapState extends State<FirstMap> {
                   zoom: _currentZoom,
                 ),
                 onMapCreated: (GoogleMapController controller) {
-                  _controller.complete(controller);
+                  widget.controller.complete(controller);
                 },
               ),
             floatingActionButton: FloatingActionButton.extended(
@@ -73,7 +75,7 @@ class FirstMapState extends State<FirstMap> {
                   _cameraPosition = mapService.cameraPosition;
                   _currentZoom = mapService.cameraZoom;
                 });
-                _goToLocation();
+                widget.animateCamera();
                 print(mapService.cameraPosition);
                 print(mapService.cameraZoom);
 
@@ -84,10 +86,10 @@ class FirstMapState extends State<FirstMap> {
     );
   }
 
-  Future<void> _goToLocation() async {
-    final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: _cameraPosition, zoom: _currentZoom)));
-  }
+  // Future<void> _goToLocation() async {
+  //   final GoogleMapController controller = await controller.future;
+  //   controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: _cameraPosition, zoom: _currentZoom)));
+  // }
 
   showPopUp(BuildContext context, Location marker) {
     // show the dialog

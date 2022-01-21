@@ -1,6 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:jtc_mini_project/constants.dart';
+import 'package:jtc_mini_project/providers/map_provider.dart';
 import 'package:jtc_mini_project/services/location_api.dart';
+import 'package:provider/provider.dart';
 import '/widgets/widgets.dart';
 import 'package:jtc_mini_project/models/location_model.dart';
 
@@ -9,8 +14,16 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Completer<GoogleMapController> _controller = Completer();
+    final mapService = Provider.of<MapProvider>(context, listen: false);
+
+    Future<void> _goToLocation() async {
+      final GoogleMapController controller = await _controller.future;
+      controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: mapService.cameraPosition, zoom: mapService.cameraZoom)));
+    }
+
     return Scaffold(
-      drawer: NavigationDrawer(),
+      drawer: NavigationDrawer(controller: _controller, animateCamera: _goToLocation),
       appBar: AppBar(
         title: Text('Home'),
         backgroundColor: kPrimaryColor,
@@ -27,7 +40,7 @@ class HomeScreen extends StatelessWidget {
               if (snapshot.hasError) {
                 return Center(child: Text('Some error occurred!'));
               } else {
-                return FirstMap(locations: locations!);
+                return FirstMap(locations: locations!, controller: _controller, animateCamera: _goToLocation,);
               }
           }
         },
