@@ -29,7 +29,8 @@ class NavigationDrawerState extends State<NavigationDrawer> {
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context);
-    final mapService = Provider.of<MapProvider>(context, listen: false);
+    final mapService = Provider.of<MapProvider>(context);
+
     final name = 'Bai He';
     final email = 'bh@gmail.com';
     final imageUrl = 'https://images.unsplash.com/uploads/14110635637836178f553/dcc2ccd9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80';
@@ -60,7 +61,10 @@ class NavigationDrawerState extends State<NavigationDrawer> {
                     onClicked: () async {
                       Navigator.of(context).pop(); // close navigation drawer
                       await Navigator.pushNamed(context, '/saved');
-                      widget.animateCamera();
+                      if (mapService.runAnimateCamera) {
+                        widget.animateCamera();
+                        mapService.updateRunAnimateCamera();
+                      }
                     },
                 ),
                 buildMenuItem(
