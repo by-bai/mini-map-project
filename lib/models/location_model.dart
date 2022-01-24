@@ -1,12 +1,28 @@
-class Location {
+import 'package:hive/hive.dart';
+part 'location_model.g.dart'; // g = generated
+
+@HiveType(typeId: 0)
+class Location extends HiveObject {
+
+  @HiveField(0)
   final int id;
+
+  @HiveField(1)
   final String title;
+
+  @HiveField(2)
   final double lat;
+
+  @HiveField(3)
   final double lon;
+
+  @HiveField(4)
   final String desc;
+
+  @HiveField(5)
   final String address;
 
-  const Location({
+  Location({
     required this.id,
     required this.title,
     required this.lat,
