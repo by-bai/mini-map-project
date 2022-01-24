@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:jtc_mini_project/providers/map_provider.dart';
 import 'package:jtc_mini_project/providers/saved_locations_provider.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +10,7 @@ import 'wrapper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   await Firebase.initializeApp();
   runApp(const MyApp());
 }
@@ -35,8 +37,8 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => Wrapper(),
           '/login': (context) => LoginScreen(),
-          '/temp': (context) => TempScreen(),
-          '/saved': (context) => SavedScreen()
+          '/saved': (context) => SavedScreen(),
+          '/weather': (context) => WeatherScreen()
         },
       ),
     );
