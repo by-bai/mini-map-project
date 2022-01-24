@@ -19,8 +19,6 @@ class MapBottomSheet extends StatefulWidget {
 class _MapBottomSheetState extends State<MapBottomSheet> {
 
   bool _isButtonDisabled = false;
-  List<Location> _savedLocations = [];
-
 
   @override
   Widget build(BuildContext context) {
@@ -32,33 +30,6 @@ class _MapBottomSheetState extends State<MapBottomSheet> {
         :
           setState(() {
             _isButtonDisabled = false;});
-
-    _savedLocations = context
-        .watch<SavedLocations>()
-        .savedLocations;
-
-    print ( " list of updated savedLocations : ");
-    for (Location item in _savedLocations) {
-      print(item.title);
-    }
-
-    if (_savedLocations.contains(widget.marker)) {
-      print(" list of savedLocations contain widget marker : TRUE");
-      if(_savedLocations.length>0) {
-        print("type of _savedLocations instance: " + _savedLocations[0].title);
-      }
-      print("type of widget.marker: " + widget.marker.title);
-    setState(() {
-    _isButtonDisabled = true; });
-    } else {
-      print(" list of savedLocations contain widget marker : FALSE");
-      if(_savedLocations.length>0) {
-        print("type of _savedLocations instance: " + _savedLocations[0].title);
-      }
-      print("type of widget.marker: " + widget.marker.title);
-      setState(() {
-    _isButtonDisabled = false;});
-    }
 
     return Container(
         padding: const EdgeInsets.only(

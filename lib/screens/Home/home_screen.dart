@@ -3,9 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:jtc_mini_project/constants.dart';
-import 'package:jtc_mini_project/providers/map_provider.dart';
 import 'package:jtc_mini_project/services/location_api.dart';
-import 'package:provider/provider.dart';
 import '/widgets/widgets.dart';
 import 'package:jtc_mini_project/models/location_model.dart';
 
