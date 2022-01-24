@@ -72,11 +72,11 @@ class NavigationDrawerState extends State<NavigationDrawer> {
                     },
                 ),
                 buildMenuItem(
-                    text: 'Temp',
-                    icon: Icons.map_outlined,
+                    text: 'Weather',
+                    icon: Icons.wb_sunny,
                     onClicked: () {
                       Navigator.of(context).pop(); // close navigation drawer
-                      Navigator.pushNamed(context, '/temp'); }
+                      Navigator.pushNamed(context, '/weather'); }
                 ),
                 buildMenuItem(
                     text: 'Logout',
