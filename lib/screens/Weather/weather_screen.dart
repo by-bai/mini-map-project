@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jtc_mini_project/constants.dart';
-import 'package:jtc_mini_project/screens/Saved/components/saved_body.dart';
+import 'package:jtc_mini_project/screens/Weather/components/weather_body.dart';
 
 class WeatherScreen extends StatelessWidget {
   const WeatherScreen({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class WeatherScreen extends StatelessWidget {
           title: const Text('Weather'),
           backgroundColor: kPrimaryColor,
         ),
-        body: const SavedBody()
+        body: const WeatherBody()
     );
   }
 }
