@@ -6,7 +6,7 @@ class TemperatureInfo {
 
   factory TemperatureInfo.fromJson(Map<String, dynamic> json) {
     final double temp = json['temp'] as double;
-    final feelsLike = json['feelsLike'] as double;
+    final double feelsLike = json['feels_like'] as double;
     return TemperatureInfo(temp: temp, feelsLike: feelsLike);
   }
 }

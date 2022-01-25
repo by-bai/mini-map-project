@@ -31,7 +31,6 @@ class WeatherResponse {
     final cityName = json['name'].toString();
 
     final weatherInfoJson = json['weather'][0] as Map<String, dynamic>; //important! List<dynamic> type
-
     final weatherInfo = WeatherInfo.fromJson(weatherInfoJson);
 
     final tempInfoJson = json['main'] as Map<String, dynamic>;
