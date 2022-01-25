@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:jtc_mini_project/models/location_model.dart';
 import 'package:jtc_mini_project/providers/saved_locations_provider.dart';
 import 'package:provider/src/provider.dart';
+import '../boxes.dart';
 import '../constants.dart';
+import '../utils/location_helper.dart';
 
 class MapBottomSheet extends StatefulWidget {
   final Location marker;
@@ -23,7 +25,8 @@ class _MapBottomSheetState extends State<MapBottomSheet> {
   @override
   Widget build(BuildContext context) {
 
-    context.read<SavedLocations>().checkLocationExists(widget.marker)
+    //context.read<SavedLocations>().checkLocationExists(widget.marker)
+    checkLocationExists(widget.marker)
         ?
           setState(() {
             _isButtonDisabled = true; })
@@ -124,7 +127,9 @@ class _MapBottomSheetState extends State<MapBottomSheet> {
   }
 
     void _saveLocation() {
-      context.read<SavedLocations>().addLocation(widget.marker);
+      //context.read<SavedLocations>().addLocation(widget.marker);
+      final box = Boxes.getSavedLocations();
+      box.add(widget.marker);
       String text = '${widget.marker.title} added to your saved locations.';
       final snackBar = SnackBar(content: Text(text));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
