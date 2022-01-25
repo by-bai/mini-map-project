@@ -28,12 +28,13 @@ class WeatherResponse {
       });
 
   factory WeatherResponse.fromJson(Map<String, dynamic> json) {
-    final cityName = json['name'];
+    final cityName = json['name'].toString();
 
-    final weatherInfoJson = json['weather'][0]; //important! List<dynamic> type
+    final weatherInfoJson = json['weather'][0] as Map<String, dynamic>; //important! List<dynamic> type
+
     final weatherInfo = WeatherInfo.fromJson(weatherInfoJson);
 
-    final tempInfoJson = json['main'];
+    final tempInfoJson = json['main'] as Map<String, dynamic>;
     final tempInfo = TemperatureInfo.fromJson(tempInfoJson);
 
     return WeatherResponse(cityName: cityName, weatherInfo: weatherInfo, tempInfo: tempInfo);

@@ -9,6 +9,7 @@ class LocationApi {
     final data = await assetBundle.loadString('assets/data/locations.json');
     final body = json.decode(data);
 
-    return body.map<Location>(Location.fromJson).toList();
+    List<Location> results = body.map<Location>(Location.fromJson).toList() as List<Location>;
+    return results;
   }
 }

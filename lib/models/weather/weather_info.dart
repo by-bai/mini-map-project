@@ -4,7 +4,7 @@ class WeatherInfo {
   WeatherInfo({required this.description});
 
   factory WeatherInfo.fromJson(Map<String, dynamic> json) {
-    final description = json['description'];
+    final String description = json['description'].toString();
     return WeatherInfo(description: description);
   }
 }

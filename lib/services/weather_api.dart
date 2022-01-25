@@ -15,6 +15,7 @@ class WeatherApi {
 
     final response = await http.get(uri);
 
-    return WeatherResponse.fromJson(jsonDecode(response.body));
+    final json = jsonDecode(response.body) as Map<String, dynamic>;
+    return WeatherResponse.fromJson(json);
   }
 }

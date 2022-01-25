@@ -5,8 +5,8 @@ class TemperatureInfo {
   TemperatureInfo({required this.temp, required this.feelsLike});
 
   factory TemperatureInfo.fromJson(Map<String, dynamic> json) {
-    final temp = json['temp'];
-    final feelsLike = json['feels_like'];
+    final double temp = json['temp'] as double;
+    final feelsLike = json['feelsLike'] as double;
     return TemperatureInfo(temp: temp, feelsLike: feelsLike);
   }
 }

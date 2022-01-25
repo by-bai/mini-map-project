@@ -4,7 +4,7 @@ import 'package:jtc_mini_project/models/location_model.dart';
 
 class MapDialog extends StatelessWidget {
   final Location marker;
-  MapDialog({required this.marker});
+  const MapDialog({required this.marker});
 
   @override
   Widget build(BuildContext context) {
@@ -18,20 +18,20 @@ class MapDialog extends StatelessWidget {
     );
   }
 
-  _buildChild(BuildContext context) => Container(
+  Container _buildChild(BuildContext context) => Container(
       height: 250,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
         children: <Widget>[
           Row(
             children: [
-              Spacer(),
+              const Spacer(),
               TextButton.icon(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                icon: Icon(Icons.close_rounded, size: 18),
-                label: Text("CLOSE"),
+                icon: const Icon(Icons.close_rounded, size: 18),
+                label: const Text("CLOSE"),
                 style: TextButton.styleFrom(
                   padding: EdgeInsets.zero, // remove default padding
                   primary: kPrimaryColor
@@ -39,21 +39,20 @@ class MapDialog extends StatelessWidget {
               )
             ]
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const Text(
                 'Place',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              SizedBox(width: 118),
+              const SizedBox(width: 118),
               Text(
                 marker.title
               )
             ]
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -66,7 +65,7 @@ class MapDialog extends StatelessWidget {
                 )
               ]
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -79,7 +78,7 @@ class MapDialog extends StatelessWidget {
                 )
               ]
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -87,7 +86,7 @@ class MapDialog extends StatelessWidget {
                   'Description',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                SizedBox(width: 80),
+                const SizedBox(width: 80),
                 Flexible(
                     child: Text(
                         marker.desc,

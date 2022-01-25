@@ -32,11 +32,11 @@ class Location extends HiveObject {
   });
 
   static Location fromJson(json) => Location(
-    id: json['id'],
-    title: json['title'],
-    lat: json['lat'],
-    lon: json['lon'],
-    desc: json['desc'],
-    address: json['address']
+    id: json['id'] as int,
+    title: json['title'].toString(),
+    lat: json['lat'] as double,
+    lon: json['lon'] as double,
+    desc: json['desc'].toString(),
+    address: json['address'].toString()
   );
 }
