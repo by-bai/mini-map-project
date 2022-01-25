@@ -8,4 +8,3 @@ bool checkLocationExists(Location location) {
   final savedLocations = box.values.toList().cast<Location>();
   return savedLocations.any((e) => e.id == location.id) ? true : false;
 }
-

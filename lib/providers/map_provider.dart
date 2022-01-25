@@ -10,12 +10,12 @@ class MapProvider with ChangeNotifier {
   double get cameraZoom => _currentZoom;
   bool get runAnimateCamera => _runAnimateCamera;
 
-  void updatePosition (double lat, double lon) {
+  void updatePosition(double lat, double lon) {
     _cameraPosition = LatLng(lat, lon);
     notifyListeners();
   }
 
-  void updateZoom (double zoomLevel) {
+  void updateZoom(double zoomLevel) {
     _currentZoom = zoomLevel;
     notifyListeners();
   }
@@ -23,5 +23,4 @@ class MapProvider with ChangeNotifier {
   void updateRunAnimateCamera() {
     _runAnimateCamera = !_runAnimateCamera;
   }
-
 }

@@ -12,8 +12,6 @@ class SavedScreen extends StatelessWidget {
           title: const Text('Saved Locations'),
           backgroundColor: kPrimaryColor,
         ),
-        body: const SavedBody()
-    );
+        body: const SavedBody());
   }
 }
-

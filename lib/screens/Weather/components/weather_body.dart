@@ -12,7 +12,6 @@ class WeatherBody extends StatefulWidget {
 }
 
 class _WeatherBodyState extends State<WeatherBody> {
-
   final _cityTextController = TextEditingController();
   final _weatherApi = WeatherApi();
   WeatherResponse? _weatherResponse;
@@ -20,30 +19,25 @@ class _WeatherBodyState extends State<WeatherBody> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child:
-        Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 50),
-                child:  TextField(
-                  controller: _cityTextController,
-                ),
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(onPressed: _search, child: Text('Search')),
-              SizedBox(height: 20),
-              if (_weatherResponse != null)
-                Column(
-                  children: [
-                    Text("country: " + _weatherResponse!.cityName),
-                    Text("currently: " + _weatherResponse!.weatherInfo.description),
-                    Text("temperature: " + _weatherResponse!.tempInfo.temp.toString()),
-                    Text("temperature: " + _weatherResponse!.tempInfo.feelsLike.toString()),
-                  ]
-                )
-            ])
-    );
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: 50),
+        child: TextField(
+          controller: _cityTextController,
+        ),
+      ),
+      SizedBox(height: 20),
+      ElevatedButton(onPressed: _search, child: Text('Search')),
+      SizedBox(height: 20),
+      if (_weatherResponse != null)
+        Column(children: [
+          Text("country: " + _weatherResponse!.cityName),
+          Text("currently: " + _weatherResponse!.weatherInfo.description),
+          Text("temperature: " + _weatherResponse!.tempInfo.temp.toString()),
+          Text("temperature: " +
+              _weatherResponse!.tempInfo.feelsLike.toString()),
+        ])
+    ]));
   }
 
   Future<void> _search() async {

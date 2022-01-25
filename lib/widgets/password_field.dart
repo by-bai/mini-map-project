@@ -27,33 +27,29 @@ class _PasswordFieldState extends State<PasswordField> {
   Widget build(BuildContext context) {
     return TextFieldContainer(
       child: TextFormField(
-        textAlignVertical: TextAlignVertical.center,
-        style: const TextStyle(color: kGreyColor),
-        controller: widget.controller,
-        cursorColor: kPrimaryColor,
-        obscureText: isHidden,
-        decoration: InputDecoration(
-            icon: widget.icon,
-            hintText: widget.hintText,
-            border: InputBorder.none,
-            suffixIcon: GestureDetector(
-                onTap: () { togglePasswordVisibility(); },
-                child: isHidden
-                    ? SvgPicture.asset(
-                  "assets/icons/visibility_off.svg",
-                  fit: BoxFit.scaleDown,
-                )
-                    : SvgPicture.asset(
-                    "assets/icons/visibility.svg",
-                    fit: BoxFit.scaleDown
-                )
-            )
-
-        ),
-        validator: (password) => password != null && password.length < 8
-            ? 'Enter min. 8 characters'
-            : null
-      ),
+          textAlignVertical: TextAlignVertical.center,
+          style: const TextStyle(color: kGreyColor),
+          controller: widget.controller,
+          cursorColor: kPrimaryColor,
+          obscureText: isHidden,
+          decoration: InputDecoration(
+              icon: widget.icon,
+              hintText: widget.hintText,
+              border: InputBorder.none,
+              suffixIcon: GestureDetector(
+                  onTap: () {
+                    togglePasswordVisibility();
+                  },
+                  child: isHidden
+                      ? SvgPicture.asset(
+                          "assets/icons/visibility_off.svg",
+                          fit: BoxFit.scaleDown,
+                        )
+                      : SvgPicture.asset("assets/icons/visibility.svg",
+                          fit: BoxFit.scaleDown))),
+          validator: (password) => password != null && password.length < 8
+              ? 'Enter min. 8 characters'
+              : null),
     );
   }
 

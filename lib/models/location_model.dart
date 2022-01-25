@@ -1,9 +1,9 @@
 import 'package:hive/hive.dart';
+
 part 'location_model.g.dart'; // g = generated
 
 @HiveType(typeId: 0)
 class Location extends HiveObject {
-
   @HiveField(0)
   final int id;
 
@@ -22,21 +22,19 @@ class Location extends HiveObject {
   @HiveField(5)
   final String address;
 
-  Location({
-    required this.id,
-    required this.title,
-    required this.lat,
-    required this.lon,
-    required this.desc,
-    required this.address
-  });
+  Location(
+      {required this.id,
+      required this.title,
+      required this.lat,
+      required this.lon,
+      required this.desc,
+      required this.address});
 
   static Location fromJson(json) => Location(
-    id: json['id'] as int,
-    title: json['title'].toString(),
-    lat: json['lat'] as double,
-    lon: json['lon'] as double,
-    desc: json['desc'].toString(),
-    address: json['address'].toString()
-  );
+      id: json['id'] as int,
+      title: json['title'].toString(),
+      lat: json['lat'] as double,
+      lon: json['lon'] as double,
+      desc: json['desc'].toString(),
+      address: json['address'].toString());
 }

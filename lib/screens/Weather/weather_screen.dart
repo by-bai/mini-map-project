@@ -12,8 +12,6 @@ class WeatherScreen extends StatelessWidget {
           title: const Text('Weather'),
           backgroundColor: kPrimaryColor,
         ),
-        body: const WeatherBody()
-    );
+        body: const WeatherBody());
   }
 }
-

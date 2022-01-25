@@ -11,7 +11,7 @@ class WeatherApi {
     final queryParameters = {'q': city, 'appid': dotenv.env['WEATHER_API_KEY']};
 
     final uri = Uri.https(
-      'api.openweathermap.org', '/data/2.5/weather', queryParameters);
+        'api.openweathermap.org', '/data/2.5/weather', queryParameters);
 
     final response = await http.get(uri);
 

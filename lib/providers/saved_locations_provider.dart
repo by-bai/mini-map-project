@@ -30,5 +30,4 @@ class SavedLocations with ChangeNotifier {
     _savedLocations.removeWhere((item) => item.id == location.id);
     notifyListeners();
   }
-
 }
