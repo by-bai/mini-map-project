@@ -4,6 +4,7 @@ import 'package:jtc_mini_project/providers/saved_locations_provider.dart';
 import 'package:provider/src/provider.dart';
 import '../boxes.dart';
 import '../constants.dart';
+import '../utils/location_helper.dart';
 
 class MapBottomSheet extends StatefulWidget {
   final Location marker;
@@ -24,7 +25,8 @@ class _MapBottomSheetState extends State<MapBottomSheet> {
   @override
   Widget build(BuildContext context) {
 
-    context.read<SavedLocations>().checkLocationExists(widget.marker)
+    //context.read<SavedLocations>().checkLocationExists(widget.marker)
+    checkLocationExists(widget.marker)
         ?
           setState(() {
             _isButtonDisabled = true; })

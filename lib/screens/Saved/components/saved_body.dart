@@ -19,7 +19,7 @@ class SavedBody extends StatefulWidget {
 
 class _SavedBodyState extends State<SavedBody> {
 
-  int _indexOfElement = 0;
+  //int _indexOfElement = 0;
   List<Location> _savedLocations = [];
 
   // void dispose() {
@@ -37,10 +37,7 @@ class _SavedBodyState extends State<SavedBody> {
     return ValueListenableBuilder<Box<Location>>(
         valueListenable: Boxes.getSavedLocations().listenable(),
         builder: (context, box, _) {
-          final _savedLocations = box.values.toList().cast<Location>();
-          print(_savedLocations);
-          print(_savedLocations.isEmpty);
-          print(_savedLocations.length);
+          _savedLocations = box.values.toList().cast<Location>();
 
           if (_savedLocations.isEmpty) {
             return const Center(
@@ -56,8 +53,6 @@ class _SavedBodyState extends State<SavedBody> {
               itemCount: _savedLocations.length,
               itemBuilder: (context, index) {
                 final location = _savedLocations[index];
-
-                print("i'm here 2");
 
                 return Container(
                     margin: const EdgeInsets.only(bottom: 10),
@@ -121,16 +116,19 @@ class _SavedBodyState extends State<SavedBody> {
 
 
   void removeLocation(Location location) {
-      setState(() {
-        _indexOfElement = _savedLocations.indexOf(location);
-      });
-      context.read<SavedLocations>().removeLocation(location);
+      // setState(() {
+      //   _indexOfElement = _savedLocations.indexOf(location);
+      // });
+      //context.read<SavedLocations>().removeLocation(location);
+      final box = Boxes.getSavedLocations();
+      int indexOfElement = _savedLocations.indexOf(location);
+      box.deleteAt(indexOfElement);
       String text = '${location.title} removed from your saved locations.';
       final snackBar = SnackBar(
           content: Text(text),
           action: SnackBarAction(
             label: 'Undo',
-            onPressed: () => context.read<SavedLocations>().addLocationAtIndex(location, _indexOfElement),
+            onPressed: () => box.add(location) //context.read<SavedLocations>().addLocationAtIndex(location, _indexOfElement),
           )
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
