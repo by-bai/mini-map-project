@@ -22,12 +22,6 @@ class _SavedBodyState extends State<SavedBody> {
   //int _indexOfElement = 0;
   List<Location> _savedLocations = [];
 
-  // void dispose() {
-  //   Hive.box('savedlocations').close();
-  //
-  //   super.dispose();
-  // }
-
   @override
   Widget build(BuildContext context) {
     // _savedLocations = context
